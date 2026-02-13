@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Love Letter</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #ff9ecf, #ffcce6);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    padding: 20px;
+    max-width: 90%;
+    margin: auto;
+}
+
+.main-gif {
+    width: 80%;
+    max-width: 250px;
+}
+
+.letter-box {
+    background: rgba(255,255,255,0.2);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    backdrop-filter: blur(8px);
+}
+
+a {
+    display: block;
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sparkle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    animation: sparkle 5s linear infinite;
+}
+
+@keyframes sparkle {
+    to {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="sparkle-container"></div>
+
+<div class="container">
+    <img class="main-gif" src="https://media.tenor.com/9ptkzQjKZp8AAAAi/cute-cat-love.gif">
+    <h1>a lil' letter to you</h1>
+
+    <div class="letter-box">
+        <p id="letterText"></p>
+    </div>
+
+    <a href="index1.html">back home</a>
+</div>
+
+<script>
+const text = `my love,
+i could write a thousand lines of code and still never capture what you mean to me.
+you make my world softer, brighter, and sweeter just by being in it.
+every moment with you feels like magic, and i’m endlessly grateful that
+i get to love you.
+happy valentine’s day, baby.
+forever yours.`;
+
+let i = 0;
+const speed = 35;
+const letter = document.getElementById("letterText");
+
+function typeWriter() {
+    if (i < text.length) {
+        letter.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+    }
+}
+typeWriter();
+
+const sparkleContainer = document.querySelector(".sparkle-container");
+
+function createSparkle() {
+    const sparkle = document.createElement("div");
+    sparkle.classList.add("sparkle");
+    sparkle.style.left = Math.random() * 100 + "vw";
+    sparkle.style.bottom = "-10px";
+    sparkle.style.animationDuration = (3 + Math.random() * 3) + "s";
+    sparkleContainer.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 6000);
+}
+
+setInterval(createSparkle, 200);
+</script>
+
+</body>
+</html>
